@@ -1,18 +1,22 @@
 {
   "name": "nidal-portfolio",
+  "homepage": "https://Danial-H-Afifeh.github.io/Nidal-Hasan-Portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "typescript": "~5.9.3",
     "vite": "^7.3.1"
   },
   "dependencies": {
+    "gh-pages": "^6.3.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   }
