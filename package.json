@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist -b gh-pages"
   },
   "devDependencies": {
     "typescript": "~5.9.3",
@@ -16,5 +17,6 @@
     "gh-pages": "^6.3.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
-  }
+  },
+  "homepage": "https://github.com/Danial-H-Afifeh/Nidal-Hasan-Portfolio"
 }
