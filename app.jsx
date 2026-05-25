@@ -402,64 +402,66 @@ const CustomsClauses = () => {
 // ========================================
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [status, setStatus] = useState({ type: '', message: '' });
+  const [status, setStatus] = useState({ type: "", message: "" });
 
   useEffect(() => {
     // Initialize EmailJS with your public key
     // TODO: Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
     if (window.emailjs) {
-      window.emailjs.init('YOUR_PUBLIC_KEY');
+      window.emailjs.init("YOUR_PUBLIC_KEY");
     }
   }, []);
-
+  console.log
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
     // Clear status when user starts typing again
     if (status.message) {
-      setStatus({ type: '', message: '' });
+      setStatus({ type: "", message: "" });
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setStatus({ type: '', message: '' });
+    setStatus({ type: "", message: "" });
 
     // TODO: Replace these with your actual EmailJS credentials
-    const SERVICE_ID = 'YOUR_SERVICE_ID';
-    const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+    const SERVICE_ID = "YOUR_SERVICE_ID";
+    const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
 
     const templateParams = {
       from_name: formData.name,
       from_email: formData.email,
       phone: formData.phone,
       message: formData.message,
-      to_email: 'nidalcco@gmail.com'
+      to_email: "nidalcco@gmail.com",
     };
 
     if (window.emailjs) {
-      window.emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+      window.emailjs
+        .send(SERVICE_ID, TEMPLATE_ID, templateParams)
         .then((response) => {
           setStatus({
-            type: 'success',
-            message: 'تم إرسال رسالتك بنجاح! سنتواصل معكم قريباً.'
+            type: "success",
+            message: "تم إرسال رسالتك بنجاح! سنتواصل معكم قريباً.",
           });
-          setFormData({ name: '', email: '', phone: '', message: '' });
+          setFormData({ name: "", email: "", phone: "", message: "" });
         })
         .catch((error) => {
-          console.error('EmailJS Error:', error);
+          console.error("EmailJS Error:", error);
           setStatus({
-            type: 'error',
-            message: 'حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى أو التواصل مباشرة عبر البريد الإلكتروني أو الهاتف.'
+            type: "error",
+            message:
+              "حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى أو التواصل مباشرة عبر البريد الإلكتروني أو الهاتف.",
           });
         })
         .finally(() => {
@@ -467,18 +469,27 @@ const Contact = () => {
         });
     } else {
       setStatus({
-        type: 'error',
-        message: 'خدمة الإرسال غير متوفرة حالياً. يرجى التواصل مباشرة عبر البريد الإلكتروني أو الهاتف.'
+        type: "error",
+        message:
+          "خدمة الإرسال غير متوفرة حالياً. يرجى التواصل مباشرة عبر البريد الإلكتروني أو الهاتف.",
       });
       setIsLoading(false);
     }
   };
 
   const contactInfo = [
-    { icon: '📍', title: 'الموقع', text: 'سوريا - طرطوس - البرانية, مقابل البنك الاسلامي (خلف مديرية الجمارك).' },
-    { icon: '📞', title: 'الهاتف', text: '805700 931 963+' },
-    { icon: '✉️', title: 'البريد الإلكتروني', text: 'nidalcco@gmail.com' },
-    { icon: '⏰', title: 'أوقات العمل', text: 'كل أيام الاسيوع (من الساعة 8 صباحا حتى الساعة 4 ظهرا).' }
+    {
+      icon: "📍",
+      title: "الموقع",
+      text: "سوريا - طرطوس - البرانية, مقابل البنك الاسلامي (خلف مديرية الجمارك).",
+    },
+    { icon: "📞", title: "الهاتف", text: "805700 931 963+" },
+    { icon: "✉️", title: "البريد الإلكتروني", text: "nidalcco@gmail.com" },
+    {
+      icon: "⏰",
+      title: "أوقات العمل",
+      text: "كل أيام الاسيوع (من الساعة 8 صباحا حتى الساعة 4 ظهرا).",
+    },
   ];
 
   return (
@@ -490,7 +501,7 @@ const Contact = () => {
             تواصل معنا للحصول على استشارة مجانية
           </p>
         </div>
-        
+
         <div className="contact-container">
           <div className="contact-info">
             <h3>معلومات الاتصال</h3>
@@ -504,7 +515,7 @@ const Contact = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="contact-form">
             <h3>أرسل رسالة</h3>
             {status.message && (
@@ -515,8 +526,8 @@ const Contact = () => {
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>الاسم</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
@@ -527,8 +538,8 @@ const Contact = () => {
               </div>
               <div className="form-group">
                 <label>البريد الإلكتروني</label>
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
@@ -539,8 +550,8 @@ const Contact = () => {
               </div>
               <div className="form-group">
                 <label>رقم الهاتف</label>
-                <input 
-                  type="tel" 
+                <input
+                  type="tel"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
@@ -550,7 +561,7 @@ const Contact = () => {
               </div>
               <div className="form-group">
                 <label>الرسالة</label>
-                <textarea 
+                <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
@@ -559,12 +570,12 @@ const Contact = () => {
                   disabled={isLoading}
                 ></textarea>
               </div>
-              <button 
-                type="submit" 
-                className={`submit-btn ${isLoading ? 'loading' : ''}`}
+              <button
+                type="submit"
+                className={`submit-btn ${isLoading ? "loading" : ""}`}
                 disabled={isLoading}
               >
-                {isLoading ? 'جاري الإرسال...' : 'إرسال الرسالة'}
+                {isLoading ? "جاري الإرسال..." : "إرسال الرسالة"}
               </button>
             </form>
           </div>
