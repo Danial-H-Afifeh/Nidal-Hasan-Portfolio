@@ -1,2 +1,33 @@
-# Nidal-Hasan-Portfolio
-Personal website for a customs clearance.
+# Nidal Hasan Customs Portfolio
+
+موقع مكتب نضال حسن للتخليص الجمركي في طرطوس.
+
+## إعداد Supabase المجاني خطوة بخطوة
+
+1. افتح `supabase.com` وأنشئ حساباً مجانياً، ثم اختر **New project**.
+2. اختر اسماً للمشروع وكلمة مرور قاعدة البيانات، وانتظر حتى تصبح الحالة **Healthy**.
+3. افتح **Project Settings → API** وانسخ:
+   - **Project URL** إلى `VITE_SUPABASE_URL`.
+   - **anon public key** إلى `VITE_SUPABASE_ANON_KEY`.
+4. افتح **SQL Editor → New query**، والصق محتوى [supabase-schema.sql](./supabase-schema.sql)، ثم اضغط **Run**.
+5. افتح **Authentication → Users → Add user → Create new user** وأنشئ:
+   - البريد: `nidalcco@gmail.com`
+   - كلمة المرور: استخدم كلمة المرور التي اخترتها للحساب.
+   - فعّل **Auto Confirm User** إن ظهرت حتى يتمكن الحساب من الدخول مباشرة.
+6. انسخ [.env.example](./.env.example) إلى ملف باسم `.env.local` في جذر المشروع، وضع القيم التي نسختها من Supabase.
+7. أعد تشغيل `npm run dev` بعد تعديل `.env.local`. عند النشر أضف القيم نفسها في **Environment Variables** لدى Vercel أو Netlify.
+8. من أسفل الموقع افتح **إدارة المحتوى** وسجّل الدخول بالحساب السابق. يمكنك رفع صورة أو فيديو لكل عمل.
+
+لا تضع `service_role key` في الموقع؛ المفتاح المطلوب هو `anon public key` فقط. كلمة المرور لا تُحفظ في الملفات ولا في Git.
+
+## سجل الأعمال
+
+تعرض الصفحة الرئيسية أحدث أربعة أعمال فقط. زر **عرض الكل** يفتح أرشيفاً داخل نافذة كبيرة يعرض جميع الأعمال، وكل صورة أو فيديو يظهر داخل بطاقة مستقلة. يتم ترتيب النتائج من الأحدث إلى الأقدم بواسطة `created_at`.
+
+## ملف البنود الجمركية
+
+الرابط الحالي موجود في الثابت `DRIVE_FILE_ID` داخل [app.jsx](./app.jsx)، ويستخدم معاينة Google Drive ورابط تنزيل مباشر. عند رفع نسخة جديدة إلى Drive، استبدل قيمة المعرّف فقط ثم أعد النشر.
+
+## التواصل المجاني
+
+نموذج التواصل يفتح رسالة Gmail جاهزة، ويوجد زر بديل لإرسال الرسالة عبر WhatsApp. لا يحتاج أي مفاتيح API أو خدمة مدفوعة.
