@@ -15,7 +15,7 @@
    - كلمة المرور: استخدم كلمة المرور التي اخترتها للحساب.
    - فعّل **Auto Confirm User** إن ظهرت حتى يتمكن الحساب من الدخول مباشرة.
 6. انسخ [.env.example](./.env.example) إلى ملف باسم `.env.local` في جذر المشروع، وضع القيم التي نسختها من Supabase.
-7. أعد تشغيل `npm run dev` بعد تعديل `.env.local`. عند النشر أضف القيم نفسها في **Environment Variables** لدى Vercel أو Netlify.
+7. أعد تشغيل `npm run dev` بعد تعديل `.env.local`. عند النشر على GitHub Pages أضف `VITE_SUPABASE_URL` و`VITE_SUPABASE_ANON_KEY` و`VITE_SUPABASE_STORAGE_BUCKET` كـ **Repository secrets** من **Settings → Secrets and variables → Actions**. سيبني workflow الموقع بهذه القيم؛ لا تضعها في الملفات.
 8. من أسفل الموقع افتح **إدارة المحتوى** وسجّل الدخول بالحساب السابق. يمكنك رفع صورة أو فيديو لكل عمل.
 
 لا تضع `service_role key` في الموقع؛ المفتاح المطلوب هو `anon public key` فقط. كلمة المرور لا تُحفظ في الملفات ولا في Git.
