@@ -16,6 +16,7 @@ alter table public.work_entries add column if not exists media_type text not nul
 alter table public.work_entries enable row level security;
 create policy "Public can read published work" on public.work_entries for select using (true);
 create policy "Authenticated admins can publish work" on public.work_entries for insert to authenticated with check (auth.uid() = created_by);
+create policy "Authenticated admins can delete work" on public.work_entries for delete to authenticated using (auth.uid() = created_by);
 
 -- Create a public Storage bucket named work-images in Supabase Storage.
 insert into storage.buckets (id, name, public)
